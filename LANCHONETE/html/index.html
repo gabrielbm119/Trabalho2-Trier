@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mega Lanches</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet"/>
+  <!-- Seu CSS -->
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+  <!-- ✅ Header com botão carrinho -->
+  <header class="bg-warning position-relative py-3 px-4">
+    <h1 class="text-danger fw-bold text-center">Mega Lanches</h1>
+
+    <!-- Botão do Carrinho com Badge -->
+    <div class="position-absolute top-0 end-0 m-3">
+      <button
+        id="btn-carrinho"
+        class="btn btn-outline-dark position-relative"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#carrinhoOffcanvas"
+      >
+        <i class="bi bi-cart"></i>
+        <span id="badge-carrinho" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+          0
+        </span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ✅ Seção do cardápio -->
+  <section id="menu" class="container my-5">
+    <h2 class="mb-4">Cardápio</h2>
+    <div class="row g-4">
+      <!-- ✅ Exemplo de 3 produtos (repita para chegar aos 18) -->
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="card text-center p-2">
+          <img src="img/x-burguer.jpg" class="card-img-top" alt="X-Burguer Comum">
+          <div class="card-body">
+            <h6 class="card-title fw-bold text-danger">X-Burguer Comum</h6>
+            <p class="card-text">R$ 15,00</p>
+            <!-- ✅ Botão com class e data-id -->
+            <button class="btn btn-primary adicionar" data-id="1">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="card text-center p-2">
+          <img src="img/x-salada.jpg" class="card-img-top" alt="X-Salada">
+          <div class="card-body">
+            <h6 class="card-title fw-bold text-danger">X-Salada</h6>
+            <p class="card-text">R$ 17,00</p>
+            <button class="btn btn-primary adicionar" data-id="2">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="card text-center p-2">
+          <img src="img/batata.jpg" class="card-img-top" alt="Batata Frita">
+          <div class="card-body">
+            <h6 class="card-title fw-bold text-danger">Batata Frita</h6>
+            <p class="card-text">R$ 10,00</p>
+            <button class="btn btn-primary adicionar" data-id="3">Adicionar</button>
+          </div>
+        </div>
+      </div>
+      <!-- 🔁 Repita para os demais produtos -->
+    </div>
+  </section>
+
+  <!-- ✅ Sidebar do Carrinho (offcanvas) -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="carrinhoOffcanvas" aria-labelledby="carrinhoLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="carrinhoLabel">Seu Pedido</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
+    </div>
+    <div class="offcanvas-body">
+
+      <!-- ✅ Seção do carrinho -->
+      <section id="carrinho">
+        <div id="itens-carrinho">
+          <!-- Os itens serão inseridos via JS aqui -->
+        </div>
+
+        <!-- ✅ Total -->
+        <p id="total" class="mt-3">Total: R$ 0,00</p>
+
+        <!-- ✅ Botão Finalizar -->
+        <button id="finalizar" class="btn btn-danger mt-3 w-100">Finalizar Pedido</button>
+      </section>
+    </div>
+  </div>
+
+  <!-- ✅ Bootstrap JS Bundle (necessário para o offcanvas) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- ✅ Scripts -->
+  <script src="js/cardapio.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
