@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header
+      class="d-flex justify-content-between align-items-center p-3 border-bottom"
+    >
+      <h1>Leitura Livre</h1>
+      <input
+        type="search"
+        class="form-control w-25"
+        placeholder="Pesquisar por título..."
+      />
+      <div>
+        <button class="btn">📚</button>
+        <button class="btn">🌙</button>
+      </div>
+    </header>
+
+    <!--Navbar com Generos-->
+    <nav class="nav nav-tabs my-3">
+      <button class="nav-link active">Todos</button>
+      <button class="nav-link">Terror</button>
+      <button class="nav-link">Romance</button>
+      <button class="nav-link">Ficção Científica</button>
+      <button class="nav-link">Brasileira</button>
+      <button class="nav-link">Filosofia Moderna</button>
+    </nav>
+
+    <section class="container" id="catalogo">
+      <h2>Catálogo</h2>
+      <div class="row">
+        <!-- Card de livro -->
+        <div class="col-md-3 mb-4">
+          <div class="card h-100">
+            <img src="---" class="card-img-top" alt="Capa do Livro" />
+            <div class="card-body">
+              <h5 class="card-title">Título do Livro</h5>
+              <p class="card-text">Autor: Fulano</p>
+              <button class="btn btn-outline-primary w-100 adicionar-estante">
+                Adicionar à estante
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="text-center py-3 mt-5">
+      <div class="d-flex justify-content-around">
+        <div>
+          <strong>Nossas redes:</strong><br />
+          <i class="bi bi-instagram"></i>
+          <i class="bi bi-facebook"></i>
+          <i class="bi bi-linkedin"></i>
+        </div>
+        <div>
+          <strong>Contato:</strong><br />
+          literaturalivre@gmail.com<br />
+          (48) 99999-9892
+        </div>
+        <div>
+          <small>Todos os direitos reservados 2025.</small>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
