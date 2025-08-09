@@ -1,0 +1,30 @@
+#banner .carousel,
+#banner .carousel-inner,
+#banner .carousel-item {
+  height: 40vh;          /* base */
+}
+
+@media (min-width: 768px) {
+  #banner .carousel,
+  #banner .carousel-inner,
+  #banner .carousel-item {
+    height: 55vh;        /* tablets/desktop */
+  }
+}
+
+@media (min-width: 1200px) {
+  #banner .carousel,
+  #banner .carousel-inner,
+  #banner .carousel-item {
+    height: 65vh;        /* desktops maiores */
+  }
+}
+
+/* imagem preenche sem distorcer */
+.carousel-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;      /* corta sem distorcer */
+  object-position: center;
+  display: block;
+}
