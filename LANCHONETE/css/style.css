@@ -1,3 +1,10 @@
+.ultra-regular {
+  font-family: "Ultra", serif;
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 #banner .carousel,
 #banner .carousel-inner,
 #banner .carousel-item {
@@ -10,6 +17,8 @@
   #banner .carousel-item {
     height: 55vh;        /* tablets/desktop */
   }
+  
+  
 }
 
 @media (min-width: 1200px) {
@@ -27,4 +36,42 @@
   object-fit: cover;      /* corta sem distorcer */
   object-position: center;
   display: block;
+}
+
+@media (max-width: 540px)  {
+  #carrinhoOffcanvas {
+    min-width: 100% !important
+  }
+} 
+
+h1, h2,h3,h4{
+    font-family: "Ultra", serif;
+    font-weight: normal;
+}
+
+header h1{
+    color: #6B0606;
+}
+
+#menu h2{
+    color: #6B0606;
+}
+
+body{
+    background-color: #FFE8BE;
+}
+
+.card {
+    background-color: #F0D7A9;
+    border: none;
+    min-height: 330px;
+
+}
+
+.card h3{
+    color: #6B0606;
+}
+
+#carrinho-item{
+    min-height: auto !important;
 }

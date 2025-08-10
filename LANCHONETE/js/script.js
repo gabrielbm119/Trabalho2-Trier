@@ -53,9 +53,15 @@ function atualizarCarrinhoNaTela() {
 
         const div = document.createElement('div');
         div.className = 'mb-2';
-        div.innerHTML = `
-      <p><strong>${item.nome}</strong> x${item.quantidade} — R$ ${totalItem.toFixed(2)}</p>
-    `;
+        div.innerHTML = `<div id="carrinho-item" class="card p-2">
+        <div class="card-body  row">
+        <h5 class="card-title m-0 row col-10"><strong class="col-7" style="font-family: 'Ultra', serif; color: #6B0606;">${item.nome}</strong> <strong class="col-5  text-end" style="font-family: 'Ultra', serif;">R$ ${totalItem.toFixed(2)}</strong></h5>
+            <div class="d-flex flex-column col-2 align-items-center">
+          <button class="btn col-12 p-0" style="height: auto;background-color: #6B0606;" onclick="removerDoCarrinho(${id})"><i class="bi bi-trash" style="color: #FFE8BE;"></i></button>
+          <p class="m-0"><strong> x${item.quantidade} <strong></p>
+         </div> 
+        </div>
+      </div>`;
 
         container.appendChild(div);
     }
@@ -84,11 +90,13 @@ function mostrarFeedback(nome) {
 // 🔽 7. Badge com número de itens
 function atualizarBadge() {
     const badge = document.getElementById('badge-carrinho');
+    const quantidadeItens = document.getElementById('quantidade-itens');
     let totalItens = 0;
     for (let id in carrinho) {
         totalItens += carrinho[id].quantidade;
     }
     badge.innerText = totalItens;
+    quantidadeItens.innerText = totalItens;
 }
 
 // 🔽 8. Salvar e carregar carrinho no localStorage
@@ -129,12 +137,15 @@ function gerarCards() {
     cardapio.forEach(item => {
         const card = `
       <div class="col-6 col-md-4 col-lg-3">
-        <div class="card text-center p-2 h-100">
-          <img src="${item.imagem}" class="card-img-top" alt="${item.nome}">
-          <div class="card-body d-flex flex-column justify-content-between">
-            <h6 class="card-title fw-bold text-danger">${item.nome}</h6>
-            <p class="card-text">R$ ${item.preco.toFixed(2)}</p>
-            <button class="btn btn-primary adicionar mt-auto" data-id="${item.id}">Adicionar</button>
+        <div class="card p-2 h-100">
+          <img style="object-fit: cover; height: 160px;" src="${item.imagem}" class="card-img-top img-fluid mt-1" alt="${item.nome}">
+          <div class="card-body d-flex flex-column justify-content-end align-items-bottom">
+            <h3 class="card-title pb-2">${item.nome}</h3>
+            <div class="row justify-content-between align-items-center">
+              <h4 class="card-text pe-0  m-0 col-12 col-md-12 col-lg-6">R$ ${item.preco.toFixed(2)}</h4>
+              <button class="btn btn-success col-12 col-md-12 col-lg-2 adicionar mt-auto" data-id="${item.id}"><i class="bi bi-cart col-2 p-0" style="color:#FFE8BE ;"></i></button>
+            </div>
+            </div>
           </div>
         </div>
       </div>
