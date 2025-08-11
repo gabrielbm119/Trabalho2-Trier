@@ -1,0 +1,24 @@
+.card-img-top {
+  min-width: 200px;
+  max-width: 400px;
+}
+
+/*Sombra modo claro*/
+
+.shadow-card {
+  box-shadow: 0 0 10px rgba(145, 145, 145, 0.5); /* Red shadow with 50% opacity */
+}
+
+.shadow-card:hover {
+  box-shadow: 0 0 10px rgba(145, 145, 145, 0.8); /* Red shadow with 50% opacity */
+}
+
+/*Sombra modo escuro*/
+
+.shadow-card {
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Red shadow with 50% opacity */
+}
+
+.shadow-card:hover {
+  box-shadow: 0 0 10px rgba(145, 145, 145, 0.8); /* Red shadow with 50% opacity */
+}

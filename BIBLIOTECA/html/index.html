@@ -14,46 +14,77 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../css/style.css" />
-    <title>Document</title>
+    <title>Literatura Livre</title>
   </head>
-  <body>
+  <body class="bg-white">
     <header
-      class="d-flex justify-content-between align-items-center p-3 border-bottom"
+      class="d-flex justify-content-between align-items-center p-3 border-bottom bg-white"
     >
-      <h1>Leitura Livre</h1>
-      <input
-        type="search"
-        class="form-control w-25"
-        placeholder="Pesquisar por título..."
-      />
+      <h1 class="text-dark"><small>Leitura Livre</small></h1>
+      <div class="input-group w-25">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Pesquise por título..."
+        />
+        <span class="input-group-text bg-dark">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="white"
+            class="bi bi-search"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"
+            />
+          </svg>
+        </span>
+      </div>
       <div>
-        <button class="btn">📚</button>
-        <button class="btn">🌙</button>
+        <button class="btn btn-dark ms-1">
+          <i class="bi bi-house-door-fill"></i>
+        </button>
+        <button class="btn btn-outline-dark ms-1">
+          <i class="bi bi-grid-1x2-fill"></i>
+        </button>
+        <button class="themeBtn btn btn-outline-dark ms-1">
+          <i class="bi bi-mask"></i>
+        </button>
       </div>
     </header>
 
     <!--Navbar com Generos-->
-    <nav class="nav nav-tabs my-3">
-      <button class="nav-link active">Todos</button>
-      <button class="nav-link">Terror</button>
-      <button class="nav-link">Romance</button>
-      <button class="nav-link">Ficção Científica</button>
-      <button class="nav-link">Brasileira</button>
-      <button class="nav-link">Filosofia Moderna</button>
+    <nav
+      class="nav nav-tabs m-2 bg-white justify-content-between align-items-center ps-4 pe-4"
+    >
+      <button class="nav-link text-dark active">Todos</button>
+      <button class="nav-link text-secondary">Terror</button>
+      <button class="nav-link text-secondary">Romance</button>
+      <button class="nav-link text-secondary">Ficção Científica</button>
+      <button class="nav-link text-secondary">Nacionais</button>
+      <button class="nav-link text-secondary">Filosofia Moderna</button>
     </nav>
 
     <section class="container" id="catalogo">
-      <h2>Catálogo</h2>
-      <div class="row">
-        <!-- Card de livro -->
-        <div class="col-md-3 mb-4">
-          <div class="card h-100">
-            <img src="---" class="card-img-top" alt="Capa do Livro" />
+      <h2 class="mt-3 mb-3">Catálogo</h2>
+      <div class="row g-3" id="mostrar-livros">
+        <!--Modelo de card-->
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="themeCard card shadow-card p-2 h-100">
+            <div class="d-flex justify-content-center align-items-center">
+              <img
+                src="https://m.media-amazon.com/images/I/81MVCxMWWoL._UF350,350_QL50_.jpg"
+                class="card-img-top"
+                alt="Capa do Livro"
+              />
+            </div>
             <div class="card-body">
-              <h5 class="card-title">Título do Livro</h5>
-              <p class="card-text">Autor: Fulano</p>
-              <button class="btn btn-outline-primary w-100 adicionar-estante">
-                Adicionar à estante
+              <h5 class="card-title text-dark">Título do Livro</h5>
+              <p class="card-text text-dark">Autor: Fulano</p>
+              <button class="btn btn-outline-dark w-100 adicionar-estante">
+                Adicionar à estante <i class="bi bi-grid-1x2-fill ms-1"></i>
               </button>
             </div>
           </div>
@@ -61,21 +92,20 @@
       </div>
     </section>
 
-    <footer class="text-center py-3 mt-5">
-      <div class="d-flex justify-content-around">
-        <div>
-          <strong>Nossas redes:</strong><br />
+    <footer class="py-3 mt-5 border-top border-secondary-subtle">
+      <div class="container d-flex justify-content-between">
+        <div class="col-3 text-start text-dark">
+          <strong class="">Nossas redes:</strong><br />
           <i class="bi bi-instagram"></i>
           <i class="bi bi-facebook"></i>
           <i class="bi bi-linkedin"></i>
         </div>
-        <div>
-          <strong>Contato:</strong><br />
-          literaturalivre@gmail.com<br />
-          (48) 99999-9892
+        <div class="col-6 text-center text-dark">
+          <strong class="">Contato:</strong><br />
+          literaturalivre@gmail.com (48) 99999-9892
         </div>
-        <div>
-          <small>Todos os direitos reservados 2025.</small>
+        <div class="col-3 text-end align-content-end text-dark">
+          <small class="">Todos os direitos reservados 2025.</small>
         </div>
       </div>
     </footer>
