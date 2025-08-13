@@ -35,15 +35,17 @@ function renderEstante(genero = 'todos') {
         if (!livroCatalogo) return '';
         return `
         <div class="col-md-3">
-            <div class="card h-100">
-                <img src="${livroCatalogo.capa}" class="card-img-top" alt="Capa de ${livroCatalogo.titulo}">
+            <div class="themeCard card shadow-card p-2 h-100">
+                <div class="d-flex justify-content-center align-items-center">
+                    <img src="${livroCatalogo.capa}" class="card-img-top" alt="Capa de ${livroCatalogo.titulo}">
+                </div>
                 <div class="card-body">
                     <h5 class="card-title">${livroCatalogo.titulo}</h5>
                     <p class="card-text"><small>Autor: ${livroCatalogo.autor}</small></p>
                     <div class="d-flex gap-2">
                         <div class="form-check">
                             <input class="form-check-input marcar-lido" type="checkbox"
-                                   id="lido-${id}" data-id="${id}" ${lido ? 'checked' : ''}>
+                                id="lido-${id}" data-id="${id}" ${lido ? 'checked' : ''}>
                             <label class="form-check-label" for="lido-${id}">Lido</label>
                         </div>
                         <button class="btn btn-danger btn-sm remover-estante" data-id="${id}">

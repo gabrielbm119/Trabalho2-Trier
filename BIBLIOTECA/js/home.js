@@ -9,14 +9,16 @@ function renderCatalogo(lista = catalogo) {
   const grid = document.getElementById('lista-catalogo');
   grid.innerHTML = lista.map(livro =>
     `<div class="col-6 col-md-4 col-lg-3">
-       <div class="card h-100">
+       <div class="themeCard card shadow-card p-2 h-100">
+       <div class="d-flex justify-content-center align-items-center">
          <img src="${livro.capa}" class="card-img-top" alt="Capa de ${livro.titulo}">
-         <div class="card-body d-flex flex-column">
-           <h6 class="card-title">${livro.titulo}</h6>
-           <p class="text-muted"><small>Autor: ${livro.autor}</small></p>
-           <button class="btn btn-outline-primary mt-auto add-estante" data-id="${livro.id}">
-             Adicionar à estante
-           </button>
+        </div> 
+        <div class="card-body d-flex flex-column">
+          <h6 class="card-title">${livro.titulo}</h6>
+          <p class="text-muted"><small>Autor: ${livro.autor}</small></p>
+          <button class="btn btn-outline-dark w-100 add-estante" data-id="${livro.id}">
+            Adicionar à estante <i class="bi bi-grid-1x2-fill ms-1"></i>
+          </button>
          </div>
        </div>
      </div>`

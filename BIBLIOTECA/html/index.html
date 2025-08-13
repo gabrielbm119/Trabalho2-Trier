@@ -10,16 +10,22 @@
   <link rel="stylesheet" href="../css/style.css" />
 </head>
 
-<body class="tema-claro">
+<body class="bg-white">
   <!-- HEADER -->
-  <header class="bg-light border-bottom py-3">
+  <header class="d-flex justify-content-between align-items-center p-3 border-bottom bg-white">
     <div class="container d-flex align-items-center justify-content-between">
-      <h1 class="h4 m-0">Leitura Livre</h1>
+      <h1 class="text-dark"><small>Leitura Livre</small></h1>
 
       <!-- Barra de busca -->
-      <div class="input-group w-50">
+      <div class="input-group w-25">
         <input type="search" id="barra-pesquisa" class="form-control" placeholder="Pesquisar por título..." />
-        <button class="btn btn-outline-secondary" type="button">🔍</button>
+        <span class="input-group-text bg-dark">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-search"
+            viewBox="0 0 16 16">
+            <path
+              d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+          </svg>
+        </span>
       </div>
 
       <!-- Botões de ação -->
@@ -27,27 +33,29 @@
         <a href="index.html" class="btn btn-dark ms-1">
           <i class="bi bi-house-door-fill"></i>
         </a>
-        <button id="btn-tema" class="btn btn-outline-dark">🌙</button>
-        <a href="estante.html" class="btn btn-primary position-relative" id="btn-estante">
-          📚
+        <a href="estante.html" class="themeBtn btn btn-outline-dark ms-1 position-relative" id="btn-estante">
+          <i class="bi bi-grid-1x2-fill"></i>
           <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
             id="contador-estante">0</span>
         </a>
+        <button id="btn-tema" class="btn btn-outline-dark ms-1">
+          <i class="bi bi-mask"></i>
+        </button>
       </div>
     </div>
-
-    <!-- Filtros de gênero -->
-    <nav class="nav nav-tabs container mt-3" id="filtros-genero">
-      <button class="nav-link active" data-genero="todos">Todos</button>
-      <button class="nav-link" data-genero="terror">Terror</button>
-      <button class="nav-link" data-genero="romance">Romance</button>
-      <button class="nav-link" data-genero="brasileira">Brasileira</button>
-      <button class="nav-link" data-genero="ficcao">Ficção Científica</button>
-      <button class="nav-link" data-genero="filosofia">
-        Filosofia Moderna
-      </button>
-    </nav>
   </header>
+
+  <!-- Filtros de gênero -->
+  <nav class="nav nav-tabs m-2 bg-white justify-content-between align-items-center ps-4 pe-4" id="filtros-genero">
+    <button class="nav-link text-dark active" data-genero="todos">Todos</button>
+    <button class="nav-link text-secondary" data-genero="terror">Terror</button>
+    <button class="nav-link text-secondary" data-genero="romance">Romance</button>
+    <button class="nav-link text-secondary" data-genero="brasileira">Brasileira</button>
+    <button class="nav-link text-secondary" data-genero="ficcao">Ficção Científica</button>
+    <button class="nav-link text-secondary" data-genero="filosofia">
+      Filosofia Moderna
+    </button>
+  </nav>
 
   <!-- CATÁLOGO -->
   <main class="container my-5">
@@ -62,18 +70,20 @@
   </main>
 
   <!-- FOOTER -->
-  <footer class="bg-light border-top py-4 mt-5">
+  <footer class="py-3 mt-5 border-top border-secondary-subtle">
     <div class="container d-flex justify-content-between">
-      <div>
+      <div class="col-3 text-start text-dark">
         <strong>Nossas redes:</strong><br />
-        <a href="#">📘 Facebook</a> | <a href="#">📷 Instagram</a>
+        <i class="bi bi-instagram"></i>
+        <i class="bi bi-facebook"></i>
+        <i class="bi bi-linkedin"></i>
       </div>
-      <div>
+      <div class="col-6 text-center text-dark">
         <strong>Contato:</strong><br />
         literaturalivre@gmail.com<br />
         (48) 99999-9992
       </div>
-      <div class="text-end">
+      <div class="col-3 text-end align-content-end text-dark">
         <small>Todos os direitos reservados © 2025</small>
       </div>
     </div>
