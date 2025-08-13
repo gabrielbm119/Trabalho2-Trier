@@ -1,33 +1,54 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/style.css" />
-  <title>Mega Lanches</title>
-</head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ultra&display=swap" rel="stylesheet">
+    <title>Mega Lanches</title>
+  </head>
 
-<body>
-  <!-- 🔝 HEADER -->
-  <header class="bg-warning text-center py-3">
-    <h1 class="text-danger fw-bold">Mega Lanches</h1>
-    <div class="position-absolute top-0 end-0 m-3">
-      <button id="btn-carrinho" class="btn btn-outline-dark position-relative" data-bs-toggle="offcanvas"
-        data-bs-target="#carrinhoOffcanvas">
-        <i class="bi bi-cart"></i>
-        <span id="badge-carrinho"
-          class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-          0
-        </span>
-      </button>
-    </div>
-  </header>
+  <body>
+    <!-- 🔝 HEADER -->
+    <header class="container d-flex flex-row justify-content-between py-3 ">
+      <h1 class="col-4">Mega Lanches</h1>
+      <div class="">
+        <button
+          id="btn-carrinho"
+          class="btn position-relative p-2"
+          style="background-color: #6B0606;"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#carrinhoOffcanvas"
+        >
+          <div class="row m-0">
+          <h4 class="p-0 pe-3 col-10 m-0" style="color:#FFE8BE ;">Carrinho</h4>
+          <i class="bi bi-cart col-2 p-0" style="color:#FFE8BE ;"></i>
+          </div>
+          <span
+            id="badge-carrinho"
+            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning"
+          >
+            0
+          </span>
+        </button>
+      </div>
+   
+    </header>
 
-  <!-- 🎞️ BANNER / CAROUSEL -->
+    <!-- 🎞️ BANNER / CAROUSEL -->
   <section id="banner" class="mb-4">
     <!-- Carousel do Bootstrap aqui depois -->
     <div class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
@@ -56,40 +77,57 @@
     </div>
   </section>
 
-  <!-- 🍔 CARDÁPIO -->
-  <section id="menu" class="container mb-5">
-    <h2 class="mb-3">Cardápio</h2>
-    <div class="row g-3" id="lista-produtos">
-      <!-- Aqui você insere os cards de produto -->
-    </div>
-  </section>
+    <!-- 🍔 CARDÁPIO -->
+    <section id="menu" class="container mb-5">
+      <h2 class="mb-4 ">Cardápio</h2>
+      <h3 class="mb-3 text-warning">Lanches</h3>
+      <div class="row g-3" id="lista-produtos">
+        <!-- Aqui você insere os cards de produto -->
+      </div>
+    </section>
 
-  <!-- 🛒 CARRINHO -->
-  <!-- Offcanvas Carrinho -->
-  <div class="offcanvas offcanvas-end" tabindex="-1" id="carrinhoOffcanvas" aria-labelledby="carrinhoLabel">
-    <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="carrinhoLabel">Seu Pedido</h5>
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
-    </div>
-    <div class="offcanvas-body">
-      <section>
-        <div id="itens-carrinho">
-          <!-- Itens inseridos via JS -->
+    <!-- 🛒 CARRINHO -->
+    <!-- Offcanvas Carrinho -->
+    <div
+      class="carrinho offcanvas offcanvas-end"
+      style="min-width:540px; background-color: #FFE8BE;"
+      tabindex="-1"
+      id="carrinhoOffcanvas"
+      aria-labelledby="carrinhoLabel"
+    >
+      <div class="offcanvas-header">
+        <h4 class="offcanvas-title " id="carrinhoLabel">Seu Pedido</h4>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="offcanvas"
+          aria-label="Fechar"
+        ></button>
+      </div>
+      <div class="offcanvas-body">
+        <div class="d-flex justify-content-center">
+        <p class="pe-3">Itens no pedido:</p>
+        <p id="quantidade-itens" class=""><span id="total-itens"></span></p>
         </div>
-        <div class="mt-3">
-          <p>Total: <span id="total-pedido">R$ 0,00</span></p>
-          <button id="finalizar-pedido" class="btn btn-success w-100">
-            Finalizar Pedido
-          </button>
-        </div>
-      </section>
+        <section>
+          <div id="itens-carrinho">
+            <!-- Itens inseridos via JS -->
+          </div>
+          <div class="mt-3 text-center">
+            <h4  class="mt-4 mb-4">Total: <span id="total-pedido">R$ 0,00</span></h4>
+            <button id="finalizar-pedido" class="btn btn-success w-75 p-3">
+              <h4 class="m-0" style="color: #FFE8BE;">Finalizar Pedido</h4>
+            </button>
+          </div>
+        </section>
+      </div>
     </div>
-  </div>
 
-  <script src="../js/script.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
-    crossorigin="anonymous"></script>
-</body>
-
+    <script src="../js/script.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
