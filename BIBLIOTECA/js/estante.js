@@ -12,49 +12,71 @@ function atualizarContadores() {
     if (txt) txt.textContent = `Total de livros: ${total} (lidos: ${lidos})`;
 }
 
-function renderEstante() {
+// Usa estante = [{id, lido}] e catalogo = [{id, titulo, autor, capa, genero}]
+function renderEstante(genero = 'todos') {
     const grid = document.getElementById('lista-estante');
     if (!grid) return;
-    grid.innerHTML = estante.map(({ id, lido }) => {
+
+    // Filtra a estante pelo gênero (se não for 'todos')
+    const listaFiltrada = estante.filter(({ id }) => {
+        const livro = catalogo.find(item => item.id === id);
+        return genero === 'todos' || (livro && livro.genero === genero);
+    });
+
+    // Atualiza botões ativos
+    const botoes = document.querySelectorAll('#filtros-genero .nav-link');
+    botoes.forEach(botao =>
+        botao.classList.toggle('active', botao.dataset.genero === genero)
+    );
+
+    // Renderiza
+    grid.innerHTML = listaFiltrada.map(({ id, lido }) => {
         const livroCatalogo = catalogo.find(item => item.id === id);
         if (!livroCatalogo) return '';
         return `
-      <div class="col-md-3">
-        <div class="card h-100">
-          <img src="${livroCatalogo.capa}" class="card-img-top" alt="Capa de ${livroCatalogo.titulo}">
-          <div class="card-body">
-            <h5 class="card-title">${livroCatalogo.titulo}</h5>
-            <p class="card-text"><small>Autor: ${livroCatalogo.autor}</small></p>
-            <div class="d-flex gap-2">
-              <div class="form-check">
-                <input class="form-check-input marcar-lido" type="checkbox"
-                       id="lido-${id}" data-id="${id}" ${lido ? 'checked' : ''}>
-                <label class="form-check-label" for="lido-${id}">Lido</label>
-              </div>
-              <button class="btn btn-danger btn-sm remover-estante" data-id="${id}">
-                Remover
-              </button>
+        <div class="col-md-3">
+            <div class="card h-100">
+                <img src="${livroCatalogo.capa}" class="card-img-top" alt="Capa de ${livroCatalogo.titulo}">
+                <div class="card-body">
+                    <h5 class="card-title">${livroCatalogo.titulo}</h5>
+                    <p class="card-text"><small>Autor: ${livroCatalogo.autor}</small></p>
+                    <div class="d-flex gap-2">
+                        <div class="form-check">
+                            <input class="form-check-input marcar-lido" type="checkbox"
+                                   id="lido-${id}" data-id="${id}" ${lido ? 'checked' : ''}>
+                            <label class="form-check-label" for="lido-${id}">Lido</label>
+                        </div>
+                        <button class="btn btn-danger btn-sm remover-estante" data-id="${id}">
+                            Remover
+                        </button>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>`;
+        </div>`;
     }).join('');
 }
 
 function aplicarFiltro(genero) {
-    const botoes = document.querySelectorAll('#filtros-genero .nav-link');
-    botoes.forEach(b => b.classList.toggle('active', b.dataset.genero === genero));
-    const lista = (genero === 'todos') ? catalogo : catalogo.filter(l => l.genero === genero);
-    renderEstante(lista);
+    console.log(genero);
+    renderEstante(genero);
 }
 
+/*
 function aplicarBusca(textoDigitado) {
     const textoNormalizado = textoDigitado.trim().toLowerCase();
-    const listaFiltrada = catalogo.filter(livro =>
-        livro.titulo.toLowerCase().includes(textoNormalizado)
-    );
+    console.log(estante);
+
+    let listaFiltrada;
+
+    for (let i = 0; i < catalogo.length; i++) {
+        listaFiltrada = estante.filter(livro =>
+            livro = catalogo[i].titulo.toLowerCase().includes(textoNormalizado)
+        );
+    }
+    console.log(listaFiltrada)
     renderEstante(listaFiltrada);
 }
+*/
 
 function removerEstante(id) {
     estante = estante.filter(l => l.id !== id);

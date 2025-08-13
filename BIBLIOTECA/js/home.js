@@ -39,7 +39,6 @@ document.getElementById('lista-catalogo').addEventListener('change', (evento) =>
   }
 });
 
-
 function aplicarFiltro(genero) {
   const botoes = document.querySelectorAll('#filtros-genero .nav-link');
   botoes.forEach(b => b.classList.toggle('active', b.dataset.genero === genero));
