@@ -1,120 +1,97 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
-      crossorigin="anonymous"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="../css/style.css" />
-    <title>Literatura Livre</title>
-  </head>
-  <body class="bg-white">
-    <header
-      class="d-flex justify-content-between align-items-center p-3 border-bottom bg-white"
-    >
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leitura Livre</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body class="bg-white">
+  <!-- HEADER -->
+  <header class="d-flex justify-content-between align-items-center p-3 border-bottom bg-white">
+    <div class="container d-flex align-items-center justify-content-between">
       <h1 class="text-dark"><small>Leitura Livre</small></h1>
+
+      <!-- Barra de busca -->
       <div class="input-group w-25">
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Pesquise por título..."
-        />
+        <input type="search" id="barra-pesquisa" class="form-control" placeholder="Pesquisar por título..." />
         <span class="input-group-text bg-dark">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            fill="white"
-            class="bi bi-search"
-            viewBox="0 0 16 16"
-          >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-search"
+            viewBox="0 0 16 16">
             <path
-              d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"
-            />
+              d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
           </svg>
         </span>
       </div>
-      <div>
-        <button class="btn btn-dark ms-1">
+
+      <!-- Botões de ação -->
+      <div class="d-flex gap-2">
+        <a href="index.html" class="btn btn-dark ms-1">
           <i class="bi bi-house-door-fill"></i>
-        </button>
-        <button class="btn btn-outline-dark ms-1">
+        </a>
+        <a href="estante.html" class="themeBtn btn btn-outline-dark ms-1 position-relative" id="btn-estante">
           <i class="bi bi-grid-1x2-fill"></i>
-        </button>
-        <button class="themeBtn btn btn-outline-dark ms-1">
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+            id="contador-estante">0</span>
+        </a>
+        <button id="btn-tema" class="btn btn-outline-dark ms-1">
           <i class="bi bi-mask"></i>
         </button>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <!--Navbar com Generos-->
-    <nav
-      class="nav nav-tabs m-2 bg-white justify-content-between align-items-center ps-4 pe-4"
-    >
-      <button class="nav-link text-dark active">Todos</button>
-      <button class="nav-link text-secondary">Terror</button>
-      <button class="nav-link text-secondary">Romance</button>
-      <button class="nav-link text-secondary">Ficção Científica</button>
-      <button class="nav-link text-secondary">Nacionais</button>
-      <button class="nav-link text-secondary">Filosofia Moderna</button>
-    </nav>
+  <!-- Filtros de gênero -->
+  <nav class="nav nav-tabs m-2 bg-white justify-content-between align-items-center ps-4 pe-4" id="filtros-genero">
+    <button class="nav-link text-dark active" data-genero="todos">Todos</button>
+    <button class="nav-link text-secondary" data-genero="terror">Terror</button>
+    <button class="nav-link text-secondary" data-genero="romance">Romance</button>
+    <button class="nav-link text-secondary" data-genero="brasileira">Brasileira</button>
+    <button class="nav-link text-secondary" data-genero="ficcao">Ficção Científica</button>
+    <button class="nav-link text-secondary" data-genero="filosofia">
+      Filosofia Moderna
+    </button>
+  </nav>
 
-    <section class="container" id="catalogo">
-      <h2 class="mt-3 mb-3">Catálogo</h2>
-      <div class="row g-3" id="mostrar-livros">
-        <!--Modelo de card-->
-        <div class="col-12 col-md-6 col-lg-3">
-          <div class="themeCard card shadow-card p-2 h-100">
-            <div class="d-flex justify-content-center align-items-center">
-              <img
-                src="https://m.media-amazon.com/images/I/81MVCxMWWoL._UF350,350_QL50_.jpg"
-                class="card-img-top"
-                alt="Capa do Livro"
-              />
-            </div>
-            <div class="card-body">
-              <h5 class="card-title text-dark">Título do Livro</h5>
-              <p class="card-text text-dark">Autor: Fulano</p>
-              <button class="btn btn-outline-dark w-100 adicionar-estante">
-                Adicionar à estante <i class="bi bi-grid-1x2-fill ms-1"></i>
-              </button>
-            </div>
-          </div>
-        </div>
+  <!-- CATÁLOGO -->
+  <main class="container my-5">
+    <section id="menu">
+      <h2 class="mb-4">Catálogo</h2>
+      <div class="row g-4" id="lista-catalogo">
+        <!-- RENDERIZAR -->
+
+      </div>
       </div>
     </section>
+  </main>
 
-    <footer class="py-3 mt-5 border-top border-secondary-subtle">
-      <div class="container d-flex justify-content-between">
-        <div class="col-3 text-start text-dark">
-          <strong class="">Nossas redes:</strong><br />
-          <i class="bi bi-instagram"></i>
-          <i class="bi bi-facebook"></i>
-          <i class="bi bi-linkedin"></i>
-        </div>
-        <div class="col-6 text-center text-dark">
-          <strong class="">Contato:</strong><br />
-          literaturalivre@gmail.com (48) 99999-9892
-        </div>
-        <div class="col-3 text-end align-content-end text-dark">
-          <small class="">Todos os direitos reservados 2025.</small>
-        </div>
+  <!-- FOOTER -->
+  <footer class="py-3 mt-5 border-top border-secondary-subtle">
+    <div class="container d-flex justify-content-between">
+      <div class="col-3 text-start text-dark">
+        <strong>Nossas redes:</strong><br />
+        <i class="bi bi-instagram"></i>
+        <i class="bi bi-facebook"></i>
+        <i class="bi bi-linkedin"></i>
       </div>
-    </footer>
+      <div class="col-6 text-center text-dark">
+        <strong>Contato:</strong><br />
+        literaturalivre@gmail.com<br />
+        (48) 99999-9992
+      </div>
+      <div class="col-3 text-end align-content-end text-dark">
+        <small>Todos os direitos reservados © 2025</small>
+      </div>
+    </div>
+  </footer>
 
-    <script src="../js/script.js"></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="../js/dados.js"></script>
+  <script type="module" src="../js/home.js"></script>
+</body>
+
 </html>
