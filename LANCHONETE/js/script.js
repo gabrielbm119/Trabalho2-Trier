@@ -42,31 +42,39 @@ function adicionarAoCarrinho(id) {
     mostrarFeedback(item.nome);
 }
 
-// 🔽 4. Atualizar carrinho na tela
 function atualizarCarrinhoNaTela() {
-    const container = document.getElementById('itens-carrinho');
-    container.innerHTML = '';
+    const container = document.getElementById("itens-carrinho");
+    container.innerHTML = "";
 
     for (let id in carrinho) {
         const item = carrinho[id];
         const totalItem = item.preco * item.quantidade;
 
-        const div = document.createElement('div');
-        div.className = 'mb-2';
-        div.innerHTML = `<div id="carrinho-item" class="card p-2">
-        <div class="card-body  row">
-        <h5 class="card-title m-0 row col-10"><strong class="col-7" style="font-family: 'Ultra', serif; color: #6B0606;">${item.nome}</strong> <strong class="col-5  text-end" style="font-family: 'Ultra', serif;">R$ ${totalItem.toFixed(2)}</strong></h5>
-            <div class="d-flex flex-column col-2 align-items-center">
-          <button class="btn col-12 p-0" style="height: auto;background-color: #6B0606;" onclick="removerDoCarrinho(${id})"><i class="bi bi-trash" style="color: #FFE8BE;"></i></button>
-          <p class="m-0"><strong> x${item.quantidade} <strong></p>
-         </div> 
-        </div>
-      </div>`;
-
+        const div = document.createElement("div");
+        div.className = "mb-2 d-flex justify-content-between align-items-center";
+        div.innerHTML = `
+            <p class="mb-0"><strong>${item.nome}</strong> x${item.quantidade
+            } — R$ ${totalItem.toFixed(2)}</p>
+            <button class="btn btn-sm btn-danger remover-item" data-id="${id}">
+                <i class="bi bi-trash"></i>
+            </button>
+        `;
         container.appendChild(div);
     }
 
+    ativarBotoesRemover(); // 🔹 chama aqui
     calcularTotal();
+}
+
+function ativarBotoesRemover() {
+    document.querySelectorAll(".remover-item").forEach((botao) => {
+        botao.addEventListener("click", () => {
+            const id = botao.dataset.id;
+            delete carrinho[id]; // remove completamente
+            salvarCarrinho();
+            atualizarCarrinhoNaTela();
+        });
+    });
 }
 
 // 🔽 5. Calcular total do pedido
