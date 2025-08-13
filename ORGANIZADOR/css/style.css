@@ -1,0 +1,9 @@
+/* No seu arquivo style.css */
+.tema-escuro input::placeholder {
+  color: #ffffff; /* Uma cor clara para o placeholder */
+  opacity: 1; /* Para garantir que a cor seja exibida corretamente em todos os navegadores */
+}
+
+.sombraDark {
+  box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.3);
+}
