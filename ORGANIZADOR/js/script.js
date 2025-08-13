@@ -85,7 +85,14 @@ const atualizarListaDeTarefas = () => {
  */
 const criarElementoHTMLDaTarefa = (tarefa) => {
   const tarefaDiv = document.createElement("div");
-  const dataFormatada = new Date(tarefa.data).toLocaleDateString("pt-BR");
+
+  // CORREÇÃO: Resolve o problema de fuso horário.
+  // Pega a data da tarefa (ex: "2025-08-15")
+  const [ano, mes, dia] = tarefa.data.split("-").map(Number);
+  // Cria um objeto de data de forma segura para evitar que o fuso horário
+  // altere a data para o dia anterior. O mês em JavaScript é base zero.
+  const dataParaExibicao = new Date(ano, mes - 1, dia);
+  const dataFormatada = dataParaExibicao.toLocaleDateString("pt-BR");
 
   // Adiciona a classe de opacidade se a tarefa estiver concluída
   const classeOpacidade = tarefa.concluida ? "opacity-50" : "";
@@ -201,6 +208,11 @@ const aplicarTemaDoCorpo = () => {
     }
   });
 
+  // CORREÇÃO: Adiciona a lógica para o background do footer
+  // Remove as classes de background existentes e adiciona a correta
+  footer.classList.remove("bg-white", "bg-dark");
+  footer.classList.add(isDark ? "bg-dark" : "bg-white");
+
   footer.classList.toggle("border-secondary-subtle", !isDark);
   footer.classList.toggle("border-light-subtle", isDark);
 
@@ -221,35 +233,74 @@ const aplicarTemaDoCorpo = () => {
     const badge = item.querySelector(".badge");
     const isConcluida = item.classList.contains("opacity-50");
 
+    // Lógica para o tema escuro
     if (isDark) {
-      // Ajusta o fundo e a sombra para o tema escuro, exceto se a tarefa for concluída
-
+      // Aplica classes de tema escuro
       item.classList.remove("bg-white");
       item.classList.add("bg-dark");
       titulo.classList.remove("text-dark");
       titulo.classList.add("text-white");
-      badge.classList.remove("bg-light", "text-dark");
-      badge.classList.add("bg-secondary", "text-light");
-
       item.classList.remove("shadow");
       item.classList.add("sombraDark");
-    } else {
-      // Tema claro
-      // Ajusta o fundo e a sombra para o tema claro, exceto se a tarefa for concluída
 
+      // Se a tarefa não estiver concluída, ajusta o badge para o tema escuro
+      if (!isConcluida) {
+        badge.classList.remove("bg-light", "text-dark");
+        badge.classList.add("bg-secondary", "text-light");
+      }
+    } else {
+      // Lógica para o tema claro
+      // Aplica classes de tema claro
       item.classList.remove("bg-dark");
       item.classList.add("bg-white");
       titulo.classList.remove("text-white");
       titulo.classList.add("text-dark");
-      badge.classList.remove("bg-secondary", "text-light");
-      badge.classList.add("bg-light", "text-dark");
       item.classList.remove("sombraDark");
       item.classList.add("shadow");
 
+      // Se a tarefa não estiver concluída, ajusta o badge para o tema claro
       if (!isConcluida) {
+        badge.classList.remove("bg-secondary", "text-light");
+        badge.classList.add("bg-light", "text-dark");
       }
     }
+
+    // CORREÇÃO: Garante que o badge da tarefa concluída seja sempre 'bg-success'
+    if (isConcluida) {
+      badge.classList.remove(
+        "bg-light",
+        "text-dark",
+        "bg-secondary",
+        "text-light"
+      );
+      badge.classList.add("bg-success", "text-white");
+    }
   });
+};
+
+// =========================================================
+//  Funções para o layout do rodapé
+// =========================================================
+
+// ADICIONADO: Esta função ajusta o layout para que o rodapé
+// fique sempre no final da página, sem precisar de fixed-bottom no HTML
+const aplicarEstilosFooter = () => {
+  const style = document.createElement("style");
+  style.innerHTML = `
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      margin: 0;
+    }
+    main {
+      flex-grow: 1;
+    }
+    footer {
+      margin-top: auto;
+    }
+  `;
+  document.head.appendChild(style);
 };
 
 // =========================================================
@@ -295,3 +346,6 @@ botaoTema.addEventListener("click", () => {
 
 // Carrega as tarefas salvas assim que a página é carregada
 carregarTarefasDoLocalStorage();
+
+// Aplica os estilos do rodapé na inicialização
+aplicarEstilosFooter();
