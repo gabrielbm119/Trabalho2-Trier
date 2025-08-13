@@ -223,14 +223,14 @@ const aplicarTemaDoCorpo = () => {
 
     if (isDark) {
       // Ajusta o fundo e a sombra para o tema escuro, exceto se a tarefa for concluída
-      if (!isConcluida) {
-        item.classList.remove("bg-white");
-        item.classList.add("bg-dark");
-        titulo.classList.remove("text-dark");
-        titulo.classList.add("text-white");
-        badge.classList.remove("bg-light", "text-dark");
-        badge.classList.add("bg-secondary", "text-light");
-      }
+
+      item.classList.remove("bg-white");
+      item.classList.add("bg-dark");
+      titulo.classList.remove("text-dark");
+      titulo.classList.add("text-white");
+      badge.classList.remove("bg-light", "text-dark");
+      badge.classList.add("bg-secondary", "text-light");
+
       item.classList.remove("shadow");
       item.classList.add("sombraDark");
     } else {
